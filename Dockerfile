@@ -3,31 +3,25 @@
 FROM crazybud/base-ubu-latest:latest
 MAINTAINER crazyBUD
 
-# add needed packages
+# Add needed packages
 #####################
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq nginx
 
-# docker settings
+# NGinX settings
 #################
-
-# map /root/config and /root/data to host.
-VOLUME /root/data
-VOLUME /root/config
 
 # expose port for http : 80
 EXPOSE 80
 
-# add conf file
+# Add conf file
 ###############
 
-ADD .nginx.conf /etc/supervisor/conf.d/nginx.conf
+ADD https://raw.githubusercontent.com/40thoughts/docker-DelugeWebUI/master/.apps.conf /etc/supervisor/conf.d/nginx.conf
 
 # Lighten the image if possible
 ###############################
 RUN apt-get clean && rm -rf /tmp/*
 
-# run `supervisor`
+# Run `supervisor`
 ##################
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.conf", "-n"]
-
-#sudo docker run -d --name "nginx" -p 4000:80 -v /home/michael/Projets/docker/NGinX/data:/root/data -v /home/michael/Projets/docker/NGinX/config:/root/config -v /etc/localtime:/etc/localtime:ro b8dde64a703c
