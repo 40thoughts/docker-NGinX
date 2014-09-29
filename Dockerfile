@@ -16,7 +16,7 @@ EXPOSE 80
 # Add conf file
 ###############
 
-ADD https://raw.githubusercontent.com/40thoughts/docker-DelugeWebUI/master/.apps.conf /etc/supervisor/conf.d/nginx.conf
+ADD https://raw.githubusercontent.com/40thoughts/docker-NGinX/master/.apps.conf /etc/supervisor/conf.d/nginx.conf
 
 # Lighten the image if possible
 ###############################
