@@ -10,6 +10,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq nginx
 # NGinX settings
 #################
 
+# turn the deamon off
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
 # expose port for http : 80
 EXPOSE 80
 
